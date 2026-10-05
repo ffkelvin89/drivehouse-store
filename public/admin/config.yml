@@ -1,0 +1,35 @@
+backend:
+  name: turbo-github
+  turbo_site_id: 18e064ba-7eaf-4921-8f9a-f1bed8efe7be
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: products
+    label: Products
+    label_singular: Product
+    folder: content/products
+    create: true
+    delete: true
+    format: json
+    extension: json
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} — {{price}} {{currency}}"
+    fields:
+      - { label: Product name, name: name, widget: string }
+      - { label: Category, name: category, widget: select, options: [ATV, Bicycle, "Jet ski", "Boat engines"] }
+      - { label: Main picture, name: image, widget: image }
+      - { label: Description, name: description, widget: text }
+      - { label: Price, name: price, widget: number, value_type: int, min: 0 }
+      - { label: Currency, name: currency, widget: select, options: [USD, ZAR, EUR, GBP], default: USD }
+      - { label: Model or trim, name: trim, widget: string, required: false }
+      - { label: Condition or usage, name: miles, widget: string, required: false }
+      - { label: Fuel or power, name: fuel, widget: string, required: false }
+      - { label: Transmission, name: transmission, widget: string, required: false }
+      - { label: Color, name: color, widget: string, required: false }
+      - { label: Location, name: location, widget: string, required: false }
+      - { label: Badge, name: tag, widget: string, required: false }
+      - { label: Estimated monthly price, name: monthly, widget: number, value_type: int, min: 0, required: false }
