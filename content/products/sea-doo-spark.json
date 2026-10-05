@@ -1,16 +1,14 @@
 {
-  "name": "Sea-Doo Spark",
-  "trim": "Trixx · 2025",
+  "name": "2027 Sea-Doo Spark for 2",
+  "trim": "Spark for 2 · 2027",
   "category": "Jet ski",
-  "price": 8999,
+  "price": 3599,
   "currency": "USD",
-  "monthly": 118,
-  "miles": "6 hrs",
+  "miles": "New",
   "fuel": "Gasoline",
   "transmission": "Direct drive",
-  "location": "Orlando, FL",
-  "tag": "Bestseller",
-  "color": "Sunrise orange",
-  "image": "photo-1567899378494-47b22a2ae96a",
-  "description": "A lightweight personal watercraft designed for playful, easy-to-learn riding."
+  "tag": "2027 Model",
+  "color": "Sunrise Orange / Dragon Red",
+  "image": "https://sea-doo.brp.com/content/dam/global/en/sea-doo/my26/studio/rec-lite/spark/SEA-MY26-SPARK-Conv-2Up-NoSS-M90-Sunrise-Orange-Dragon-Red-00064TG00-Studio-RSIDE-CU.png",
+  "description": "A lightweight two-rider personal watercraft with the 2027 Rotax 1000 ACE engine (60 or 90 hp), Polytec hull and iBR brake/reverse. Price reflects $3,500 off Sea-Doo's $7,099 starting price; transport and preparation are not included. Confirm trim, availability, fees and final price with the seller."
 }

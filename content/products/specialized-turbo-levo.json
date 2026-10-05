@@ -1,16 +1,15 @@
 {
-  "name": "Specialized Turbo Levo",
-  "trim": "Comp Alloy · 2025",
+  "name": "2026 Specialized Turbo Levo 4 Comp Alloy",
+  "trim": "Comp Alloy · 2026",
   "category": "Bicycle",
-  "price": 7499,
+  "price": 3300,
   "currency": "USD",
-  "monthly": 98,
   "miles": "New",
   "fuel": "Electric",
   "transmission": "12-speed",
   "location": "Portland, OR",
   "tag": "Electric",
   "color": "Satin black",
-  "image": "photo-1507035895480-2b3156c31fc8",
-  "description": "An electric mountain bike with smooth assistance for longer rides and steeper trails."
+  "image": "https://www.balfesbikes.co.uk/images/products/9/95/95226-52_levo-comp-alloy-g4-gun-obsd_hero-pdp.png?bgcolor=ffffff&format=webp&height=1998&mode=pad&quality=85&width=1998",
+  "description": "A full-power electric trail bike with Specialized's 3.1 motor (810 W peak, 105 Nm), 840 Wh battery, M5 alloy frame, 150 mm rear travel and 160 mm FOX fork. Price reflects $3,500 off Specialized's current $6,799.99 price, rounded to the nearest dollar. Confirm model, size, availability and final price with the seller."
 }
