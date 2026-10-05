@@ -3,17 +3,16 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 import './contact.css';
 
-const products = [
-  { id: 1, name: 'Can-Am Outlander 850', trim: 'XT-P · 2025', category: 'ATV', price: 14299, monthly: 187, miles: '12 hrs', fuel: 'Gasoline', transmission: 'Automatic', location: 'Phoenix, AZ', tag: 'Bestseller', color: 'Red', image: 'photo-1558981806-ec527fa84c39', description: 'A trail-ready ATV built for confident handling and weekend adventures.' },
-  { id: 2, name: 'Specialized Turbo Levo', trim: 'Comp Alloy · 2025', category: 'Bicycle', price: 7499, monthly: 98, miles: 'New', fuel: 'Electric', transmission: '12-speed', location: 'Portland, OR', tag: 'Electric', color: 'Satin black', image: 'photo-1507035895480-2b3156c31fc8', description: 'An electric mountain bike with smooth assistance for longer rides and steeper trails.' },
-  { id: 3, name: 'Sea-Doo Spark', trim: 'Trixx · 2025', category: 'Jet ski', price: 8999, monthly: 118, miles: '6 hrs', fuel: 'Gasoline', transmission: 'Direct drive', location: 'Orlando, FL', tag: 'Bestseller', color: 'Sunrise orange', image: 'photo-1567899378494-47b22a2ae96a', description: 'A lightweight personal watercraft designed for playful, easy-to-learn riding.' },
-  { id: 4, name: 'Yamaha F150', trim: 'Four-stroke outboard · 2025', category: 'Boat engines', price: 16450, monthly: 215, miles: 'New', fuel: 'Gasoline', transmission: '150 hp', location: 'Tampa, FL', tag: 'Just in', color: 'Pearl gray', image: 'photo-1569263979104-865ab7cd8d13', description: 'A 150-horsepower four-stroke outboard for dependable power on the water.' }
-];
+const products = Object.values(import.meta.glob('../content/products/*.json', { eager: true, import: 'default' }));
 
 const imageUrl = (source, width = 900) => source.startsWith('/') || source.startsWith('http')
   ? source
   : `https://images.unsplash.com/${source}?auto=format&fit=crop&w=${width}&q=85`;
-const money = n => '$' + n.toLocaleString('en-US');
+const money = (amount, currency = 'USD') => new Intl.NumberFormat(undefined, {
+  style: 'currency',
+  currency: currency || 'USD',
+  maximumFractionDigits: 0
+}).format(Number(amount) || 0);
 
 function Icon({ name, size = 18 }) {
   const paths = {
@@ -93,7 +92,7 @@ function App() {
 
       <section className="inventory section" id="inventory"><div className="section-heading"><div><div className="eyebrow">THE DRIVEHOUSE EDIT</div><h2>Our most-loved <em>rides.</em></h2><p>Handpicked, road-tested, and ready for a new story.</p></div><a className="text-link" href="#inventory">Explore all inventory <Icon name="arrow"/></a></div>
         <div className="inventory-controls"><div className="tabs">{['All products', 'ATV', 'Bicycle', 'Jet ski', 'Boat engines'].map(item => <button className={category === item ? 'tab active' : 'tab'} onClick={() => setCategory(item)} key={item}>{item}</button>)}</div><div className="control-right"><label className="searchbox"><Icon name="search"/><input id="vehicle-search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Search products"/></label><select aria-label="Sort products" value={sort} onChange={event => setSort(event.target.value)}><option>Featured</option><option>Price: low to high</option><option>Price: high to low</option></select></div></div>
-        <div className="car-grid">{filtered.map(product => <article className="car-card" key={product.id}><div className="car-photo"><img src={imageUrl(product.image)} alt={`${product.name} in ${product.color}`} loading="lazy"/><span className={`tag ${product.tag === 'Bestseller' ? 'tag-green' : ''}`}>{product.tag}</span></div><div className="car-info"><div className="car-title"><div><h3>{product.name}</h3><p>{product.trim}</p></div><span className="color-dot" title={product.color}/></div><p className="product-description">{product.description}</p><div className="specs"><span>{product.miles}</span><i/><span>{product.fuel}</span><i/><span>{product.transmission}</span></div><div className="car-bottom"><div><strong>{money(product.price)}</strong><small>Est. {money(product.monthly)}/mo</small></div><button className="button button-dark contact-product" onClick={() => contactAbout(product)}>Contact to buy <Icon name="arrow" size={15}/></button></div></div></article>)}</div>
+        <div className="car-grid">{filtered.map(product => <article className="car-card" key={product.id || product.name}><div className="car-photo"><img src={imageUrl(product.image)} alt={`${product.name}${product.color ? ` in ${product.color}` : ''}`} loading="lazy"/>{product.tag && <span className={`tag ${product.tag === 'Bestseller' ? 'tag-green' : ''}`}>{product.tag}</span>}</div><div className="car-info"><div className="car-title"><div><h3>{product.name}</h3><p>{product.trim}</p></div>{product.color && <span className="color-dot" title={product.color}/>}</div><p className="product-description">{product.description}</p><div className="specs">{[product.miles, product.fuel, product.transmission].filter(Boolean).map((spec, index) => <React.Fragment key={spec}>{index > 0 && <i/>}<span>{spec}</span></React.Fragment>)}</div><div className="car-bottom"><div><strong>{money(product.price, product.currency)}</strong>{product.monthly ? <small>Est. {money(product.monthly, product.currency)}/mo</small> : null}</div><button className="button button-dark contact-product" onClick={() => contactAbout(product)}>Contact to buy <Icon name="arrow" size={15}/></button></div></div></article>)}</div>
         {filtered.length === 0 && <div className="empty-state">No products match that search. Try another name or category.</div>}
         <div className="inventory-foot"><span>Showing {filtered.length} of {products.length} handpicked products</span><a className="text-link" href="#contact">Ask us about a product <Icon name="arrow"/></a></div>
       </section>
