@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f5f4f0" />
-    <meta name="description" content="Find your next drive at Drivehouse. Shop carefully selected vehicles and follow every delivery mile." />
+    <meta name="description" content="Explore ATVs, bicycles, jet skis, and boat engines. Contact Drivehouse about a product and arrange delivery." />
     <title>Drivehouse — Find your next drive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <form name="product-enquiry" method="POST" data-netlify="true" class="form-blueprint" aria-hidden="true">
+      <input type="hidden" name="form-name" value="product-enquiry" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="product"><option>Can-Am Outlander 850</option><option>Specialized Turbo Levo</option><option>Sea-Doo Spark</option><option>Yamaha F150</option></select>
+      <input type="text" name="category" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
